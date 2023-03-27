@@ -58,7 +58,7 @@ int print_number(int n)
 }
 
 /**
- * print_integer - a function that prints a integerger type
+ * print_integer - a function that prints a integer type
  * @format: given format, used for format specification
  * @idx: pointer to current index for the format
  * @args: arguments passed
