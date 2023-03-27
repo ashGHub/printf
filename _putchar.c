@@ -1,4 +1,4 @@
-#include "main.h" 
+#include "main.h"
 
 /**
  * _putchar - a function to print a character to stdout

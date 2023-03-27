@@ -10,10 +10,10 @@
 /**
  * struct format - a structure for the conversion specifiers
  * @type: conversion specifier
- * @print: a function for printing the data type
+ * @handle: a function for printing the data type
  *
  * Description: this a structure for handling
- * 				the different conversion specifiers
+ *				the different conversion specifiers
  */
 typedef struct format
 {
