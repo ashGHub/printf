@@ -3,7 +3,7 @@
 /**
  * get_binary_string - get binary string in reverse
  * @num: number to convert to binary
- * @idx: current index of teh binary string
+ * @idx: current index of the binary string
  *
  * Return: binary string in reverse
  */
