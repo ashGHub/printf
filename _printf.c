@@ -41,6 +41,7 @@ int (*get_print_function(const char *c))(const char *, int *, va_list)
 		{"s", print_string},
 		{"d", print_integer},
 		{"i", print_integer},
+		{"b", print_binary},
 		{NULL, NULL}
 	};
 	int i = 0;
@@ -107,7 +108,7 @@ int print_conversion_specifier(const char *format, int *idx, va_list args)
  */
 short is_supported_specifier(const char *format, int current_idx)
 {
-	char specifier[] = "csdi";
+	char specifier[] = "csdib";
 	int i, is_specifier = 0;
 
 	for (i = 0; specifier[i]; i++)

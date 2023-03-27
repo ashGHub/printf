@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
+#include <stdlib.h>
 
 #define IS_H_OR_L(x) ((x) == 'H' || (x) == 'L')
 
@@ -24,10 +25,12 @@ typedef struct format
 
 int _putchar(char ch);
 
+/* print functions */
 int _printf(const char *format, ...);
 int print_char(const char *format, int *idx, va_list args);
 int print_string(const char *format, int *idx, va_list args);
 int print_integer(const char *format, int *idx, va_list args);
+int print_binary(const char *format, int *idx, va_list args);
 
 /* helpers */
 short is_flag(const char *format, int *current_idx);
