@@ -1,10 +1,5 @@
 #include "main.h"
 
-int (*get_print_function(const char *c))(const char *, int *, va_list);
-int get_specifier_idx(const char *format, int current_idx);
-int print_conversion_specifier(const char *format, int *idx, va_list args);
-short is_supported_specifier(const char *format, int current_idx);
-
 /**
  * _printf - a function that produces output according to a format
  * @format: format to print

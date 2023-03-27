@@ -34,6 +34,10 @@ short is_length(const char *format, int *current_idx);
 short is_precision(const char *format, int *current_idx);
 short is_format_option(const char *format, int *current_idx);
 
-/* int print_percent(char); */
+/* printf support functions */
+int (*get_print_function(const char *c))(const char *, int *, va_list);
+int get_specifier_idx(const char *format, int current_idx);
+int print_conversion_specifier(const char *format, int *idx, va_list args);
+short is_supported_specifier(const char *format, int current_idx);
 
 #endif
