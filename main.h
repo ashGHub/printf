@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 #define IS_H_OR_L(x) ((x) == 'H' || (x) == 'L')
 
@@ -26,6 +27,7 @@ int _putchar(char ch);
 int _printf(const char *format, ...);
 int print_char(const char *format, int *idx, va_list args);
 int print_string(const char *format, int *idx, va_list args);
+int print_integer(const char *format, int *idx, va_list args);
 
 /* helpers */
 short is_flag(const char *format, int *current_idx);

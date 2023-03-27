@@ -23,6 +23,30 @@ int main(void)
 	printf("String:[Hello %s and percent %% works as well as %c \"]\n", "I am a string !", 'A');
 
 	/*--------------------------------------------*/
+
+	/* Decimal inputs */
+	printf("_______ Integer inputs\n");
+	_printf("Integer: [%d]\n", 39);
+	printf("Integer: [%d]\n", 39);
+	
+	_printf("Integer: [%d]\n", INT_MAX);
+	printf("Integer: [%d]\n", INT_MAX);
+	_printf("Integer: [%d]\n", INT_MIN);
+	printf("Integer: [%d]\n", INT_MIN);
+	
+
+	/* Integer inputs */
+	_printf("Integer: [%i]\n", 39);
+	printf("Integer: [%i]\n", 39);
+	
+	_printf("Integer: [%i]\n", INT_MAX);
+	printf("Integer: [%i]\n", INT_MAX);
+	_printf("Integer: [%i]\n", INT_MIN);
+	printf("Integer: [%i]\n", INT_MIN);
+
+
+	/*--------------------------------------------*/
+
 	/* Multiple inputs with single format*/
 	printf("_____ Multiple inputs with single format\n");
 	_printf("String:[%s]\n", "I am a string !", "Hello");
