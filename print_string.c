@@ -14,6 +14,8 @@ int print_string(const char *format, int *idx, va_list args)
 	char *str = va_arg(args, char *);
 
 	(void)format;
+	if (str == NULL)
+		str = "(null)";
 	for (i = 0; str && str[i]; i++)
 	{
 		printed = _putchar(str[i]);
