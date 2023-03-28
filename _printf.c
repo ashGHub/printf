@@ -47,6 +47,7 @@ int (*get_print_function(const char *c))(const char *, int *, va_list)
 		{"o", print_octal},
 		{"x", print_hex},
 		{"X", print_hex},
+		{"S", print_custom_string},
 		{NULL, NULL}
 	};
 	int i = 0;
@@ -113,7 +114,7 @@ int print_conversion_specifier(const char *format, int *idx, va_list args)
  */
 short is_supported_specifier(const char *format, int current_idx)
 {
-	char specifier[] = "csdibuoxX";
+	char specifier[] = "csdibuoxXS";
 	int i, is_specifier = 0;
 
 	for (i = 0; specifier[i]; i++)

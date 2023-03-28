@@ -38,6 +38,7 @@ int print_binary(const char *format, int *idx, va_list args);
 int print_unsigned(const char *format, int *idx, va_list args);
 int print_octal(const char *format, int *idx, va_list args);
 int print_hex(const char *format, int *idx, va_list args);
+int print_custom_string(const char *format, int *idx, va_list args);
 
 /* helpers */
 short is_flag(const char *format, int *current_idx);
