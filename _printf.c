@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 			return (-1);
 		printed_chars += printed;
 	}
+	printed_chars += _flush();
 	va_end(args);
 	return (printed_chars);
 }

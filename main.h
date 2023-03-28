@@ -8,6 +8,8 @@
 #include <stdlib.h>
 
 #define IS_H_OR_L(x) ((x) == 'H' || (x) == 'L')
+#define BUFFER_SIZE 1024
+#define BUFFER_FLUSH -1
 
 /**
  * struct format - a structure for the conversion specifiers
@@ -24,6 +26,8 @@ typedef struct format
 } format_t;
 
 int _putchar(char ch);
+int _puts(char *str);
+int _flush(void);
 
 /* print functions */
 int _printf(const char *format, ...);
