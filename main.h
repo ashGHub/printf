@@ -8,8 +8,11 @@
 #include <stdlib.h>
 
 #define IS_H_OR_L(x) ((x) == 'H' || (x) == 'L')
+
 #define BUFFER_SIZE 1024
 #define BUFFER_FLUSH -1
+#define SMALL_HEX 120
+#define CAPITAL_HEX 88
 
 /**
  * struct format - a structure for the conversion specifiers
@@ -39,6 +42,7 @@ int print_unsigned(const char *format, int *idx, va_list args);
 int print_octal(const char *format, int *idx, va_list args);
 int print_hex(const char *format, int *idx, va_list args);
 int print_custom_string(const char *format, int *idx, va_list args);
+int print_pointer(const char *format, int *idx, va_list args);
 
 /* helpers */
 short is_flag(const char *format, int *current_idx);
@@ -52,5 +56,8 @@ int (*get_print_function(const char *c))(const char *, int *, va_list);
 int get_specifier_idx(const char *format, int current_idx);
 int print_conversion_specifier(const char *format, int *idx, va_list args);
 short is_supported_specifier(const char *format, int current_idx);
+
+/* util functions */
+int write_hex(char hex_type, unsigned long num);
 
 #endif

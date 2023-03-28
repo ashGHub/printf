@@ -30,52 +30,6 @@ int _printf(const char *format, ...)
 }
 
 /**
- * get_print_function - a function to get the appropriate format handler
- * @c: format type
- *
- * Return: pointer to the format handling function, NULL (otherwise)
- */
-int (*get_print_function(const char *c))(const char *, int *, va_list)
-{
-	format_t print_funcs[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"u", print_unsigned},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_hex},
-		{"S", print_custom_string},
-		{NULL, NULL}
-	};
-	int i = 0;
-
-	while (print_funcs[i].type && *(print_funcs[i].type) != *c)
-		i++;
-	return (print_funcs[i].handle);
-}
-
-/**
- * get_specifier_idx - gets the index of the next format specifier
- * @format: given format, used for format specification
- * @current_idx: current index to iterate the format from
- *
- * Return: returns the index of the format specifier, -1 (otherwise)
- */
-int get_specifier_idx(const char *format, int current_idx)
-{
-	const int not_found = -1;
-
-	while (is_format_option(format, &current_idx))
-		current_idx++;
-	if (is_supported_specifier(format, current_idx))
-		return (current_idx);
-	return (not_found);
-}
-
-/**
  * print_conversion_specifier - a function to print the format
  *								based on a conversion specifier
  * @format: given format, used for format specification
@@ -105,6 +59,24 @@ int print_conversion_specifier(const char *format, int *idx, va_list args)
 }
 
 /**
+ * get_specifier_idx - gets the index of the next format specifier
+ * @format: given format, used for format specification
+ * @current_idx: current index to iterate the format from
+ *
+ * Return: returns the index of the format specifier, -1 (otherwise)
+ */
+int get_specifier_idx(const char *format, int current_idx)
+{
+	const int not_found = -1;
+
+	while (is_format_option(format, &current_idx))
+		current_idx++;
+	if (is_supported_specifier(format, current_idx))
+		return (current_idx);
+	return (not_found);
+}
+
+/**
  * is_supported_specifier - a function that check if the current
  *							character is supported conversion specifier
  * @format: the given format string
@@ -114,7 +86,7 @@ int print_conversion_specifier(const char *format, int *idx, va_list args)
  */
 short is_supported_specifier(const char *format, int current_idx)
 {
-	char specifier[] = "csdibuoxXS";
+	char specifier[] = "csdibuoxXSp";
 	int i, is_specifier = 0;
 
 	for (i = 0; specifier[i]; i++)
@@ -124,4 +96,33 @@ short is_supported_specifier(const char *format, int current_idx)
 			break;
 	}
 	return (is_specifier);
+}
+
+/**
+ * get_print_function - a function to get the appropriate format handler
+ * @c: format type
+ *
+ * Return: pointer to the format handling function, NULL (otherwise)
+ */
+int (*get_print_function(const char *c))(const char *, int *, va_list)
+{
+	format_t print_funcs[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"b", print_binary},
+		{"u", print_unsigned},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_hex},
+		{"S", print_custom_string},
+		{"p", print_pointer},
+		{NULL, NULL}
+	};
+	int i = 0;
+
+	while (print_funcs[i].type && *(print_funcs[i].type) != *c)
+		i++;
+	return (print_funcs[i].handle);
 }
