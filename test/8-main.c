@@ -55,9 +55,9 @@ int main(void)
 	len = printf("printf [h][%hd]\n", INT_MIN);
 	printf("printf len = %d\n", len);
 
-	len = _printf("_printf [l][%ld]\n", INT_MIN);
+	len = _printf("_printf [l][%ld]\n", -5);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [l][%ld]\n", INT_MIN);
+	len = printf("printf [l][%ld]\n", -5);
 	printf("printf len = %d\n", len);
 	printf("---------------------------------------\n");
 

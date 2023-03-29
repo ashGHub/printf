@@ -21,7 +21,7 @@ unsigned int digit_part(unsigned int n)
  *
  * Return: 0 for zero, +ve n for any n
  */
-unsigned int _abs(int n)
+unsigned int _abs(long n)
 {
 	if (n >= 0)
 		return (n);
@@ -54,7 +54,7 @@ int int_apply_flag_option(format_op_t format_op)
  *
  * Return: converted number
 */
-int int_apply_length_option(int n, format_op_t format_op)
+long int_apply_length_option(int n, format_op_t format_op)
 {
 	if (format_op._short)
 		return ((short)n);
@@ -75,7 +75,7 @@ int int_apply_length_option(int n, format_op_t format_op)
 int print_integer(const char *format, int idx, va_list args,
 					format_op_t format_op)
 {
-	int n = va_arg(args, int);
+	long n = va_arg(args, int);
 	int printed_chars = 0;
 	short is_negative;
 	unsigned int p, n1;
@@ -84,8 +84,7 @@ int print_integer(const char *format, int idx, va_list args,
 	(void)idx;
 	n = int_apply_length_option(n, format_op);
 	n1 = _abs(n);
-	if (n != INT_MIN && !format_op._long)
-		is_negative = n < 0;
+	is_negative = n < 0;
 	if (is_negative)
 		printed_chars += _putchar('-');
 	else
