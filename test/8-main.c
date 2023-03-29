@@ -71,9 +71,69 @@ int main(void)
 	len = printf("printf [l][%ld]\n", NULL);
 	printf("printf len = %d\n", len);
 	printf("---------------------------------------\n");
-
+	/*---------------------------------------------------------*/
 
 	/* ------------------------------------------------------ */
+	/* Normal output - Unsigned integer */
+	printf("______ Normal output - Unsigned integer\n");
+	len = _printf("_printf [h][%hu]\n", 50);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hu]\n", 50);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [l][%lu]\n", 50);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [l][%lu]\n", 50);
+	printf("printf len = %d\n", len);
+	printf("-------------------------------------\n");
+
+	/* ------------------------------------------------------ */
+	/* Edge cases - Integer*/
+	printf("______ Edge cases - Unsigned integer\n");
+	len = _printf("_printf [h][%hu]\n", 0);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hu]\n", 0);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [l][%lu]\n", 0);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [l][%lu]\n", 0);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [h][%hu]\n", 5);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hu]\n", 5);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [l][%lu]\n", -5);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [l][%lu]\n", -5);
+	printf("printf len = %d\n", len);
+	printf("--------------------------------------\n");
+
+	len = _printf("_printf [h][%hu]\n", ULONG_MAX);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hu]\n", ULONG_MAX);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [l][%lu]\n", ULONG_MAX);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [l][%lu]\n", ULONG_MAX);
+	printf("printf len = %d\n", len);
+	printf("---------------------------------------\n");
+
+	len = _printf("_printf [h][%hu]\n", NULL);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hu]\n", NULL);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [l][%lu]\n", NULL);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [l][%lu]\n", NULL);
+	printf("printf len = %d\n", len);
+	printf("---------------------------------------\n");
+	/* ------------------------------------------------------ */
+
 	/* ------------------------------------------------------ */
 	/* Normal output - Octal*/
 	printf("______ Normal output - Octal\n");
@@ -102,14 +162,14 @@ int main(void)
 	printf("printf len = %d\n", len);
 	printf("--------------------------------------\n");
 
-	len = _printf("_printf [h][%ho]\n", UINT_MAX);
+	len = _printf("_printf [h][%ho]\n", ULONG_MAX);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [h][%ho]\n", UINT_MAX);
+	len = printf("printf [h][%ho]\n", ULONG_MAX);
 	printf("printf len = %d\n", len);
 
-	len = _printf("_printf [l][%lo]\n", UINT_MAX);
+	len = _printf("_printf [l][%lo]\n", ULONG_MAX);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [l][%lo]\n", UINT_MAX);
+	len = printf("printf [l][%lo]\n", ULONG_MAX);
 	printf("printf len = %d\n", len);
 	printf("---------------------------------------\n");
 
@@ -154,14 +214,14 @@ int main(void)
 	printf("printf len = %d\n", len);
 	printf("--------------------------------------\n");
 
-	len = _printf("_printf [h][%hx]\n", UINT_MAX);
+	len = _printf("_printf [h][%hx]\n", ULONG_MAX);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [h][%hx]\n", UINT_MAX);
+	len = printf("printf [h][%hx]\n", ULONG_MAX);
 	printf("printf len = %d\n", len);
 
-	len = _printf("_printf [l][%lx]\n", UINT_MAX);
+	len = _printf("_printf [l][%lx]\n", ULONG_MAX);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [l][%lx]\n", UINT_MAX);
+	len = printf("printf [l][%lx]\n", ULONG_MAX);
 	printf("printf len = %d\n", len);
 	printf("---------------------------------------\n");
 

@@ -8,7 +8,7 @@
  *
  * Return: hex string in reverse
  */
-char *get_hex_string(unsigned long num, char x, int *idx)
+char *get_hex_string(unsigned long int num, char x, int *idx)
 {
 	short base = 16;
 	unsigned long i = *idx, max_hex_digit = 16, quo = 0;
@@ -38,7 +38,7 @@ char *get_hex_string(unsigned long num, char x, int *idx)
  *
  * Return: number of characters printed
  */
-int write_hex(char hex_type, unsigned long num)
+int write_hex(char hex_type, unsigned long int num)
 {
 	int i = 0, j, printed_chars = 0;
 	char *hex;

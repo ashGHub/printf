@@ -48,22 +48,6 @@ int int_apply_flag_option(format_op_t format_op)
 }
 
 /**
- * int_apply_length_option - a function that applys length modifier option
- * @n: number to convert to the supported length
- * @format_op: format options
- *
- * Return: converted number
-*/
-long int int_apply_length_option(long int n, format_op_t format_op)
-{
-	if (format_op._short)
-		return ((short)n);
-	if (format_op._long)
-		return (n);
-	return ((int)n);
-}
-
-/**
  * print_integer - a function that prints a integer type
  * @format: given format, used for format specification
  * @idx: current index for the format
@@ -82,7 +66,7 @@ int print_integer(const char *format, int idx, va_list args,
 
 	(void)format;
 	(void)idx;
-	n = int_apply_length_option(n, format_op);
+	n = convert_to_signed(n, format_op);
 	n1 = _abs(n);
 	is_negative = n < 0;
 	if (is_negative)

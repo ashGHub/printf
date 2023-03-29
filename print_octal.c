@@ -17,32 +17,16 @@ int octal_apply_flag_option(unsigned int num, format_op_t format_op)
 }
 
 /**
- * octal_apply_length_option - a function that applys length modifier option
- * @n: number to convert to the supported length
- * @format_op: format options
- *
- * Return: converted number
-*/
-unsigned int octal_apply_length_option(unsigned int n, format_op_t format_op)
-{
-	if (format_op._short)
-		return ((unsigned short)n);
-	if (format_op._long)
-		return ((unsigned long)n);
-	return (n);
-}
-
-/**
  * get_octal_string - get octal string in reverse
  * @num: number to convert to octal
  * @idx: current index of the octal string
  *
  * Return: octal string in reverse
  */
-char *get_octal_string(unsigned int num, int *idx)
+char *get_octal_string(unsigned long int num, int *idx)
 {
 	short base = 8;
-	unsigned int i = *idx, max_octal_digit = 11, quo = 0;
+	unsigned long int i = *idx, max_octal_digit = 11, quo = 0;
 	char *octal;
 
 	octal = malloc(max_octal_digit * sizeof(char));
@@ -72,12 +56,12 @@ int print_octal(const char *format, int idx, va_list args,
 				format_op_t format_op)
 {
 	int i = 0, j, printed_chars = 0;
-	unsigned int num = va_arg(args, int);
+	unsigned long int num = va_arg(args, unsigned long int);
 	char *octal;
 
 	(void)format;
 	(void)idx;
-	num = octal_apply_length_option(num, format_op);
+	num = convert_to_unsigned(num, format_op);
 	octal = get_octal_string(num, &i);
 	if (octal == NULL)
 		return (-1);
