@@ -54,13 +54,13 @@ int int_apply_flag_option(format_op_t format_op)
  *
  * Return: converted number
 */
-long int_apply_length_option(int n, format_op_t format_op)
+long int int_apply_length_option(long int n, format_op_t format_op)
 {
 	if (format_op._short)
 		return ((short)n);
 	if (format_op._long)
-		return ((long)n);
-	return (n);
+		return (n);
+	return ((int)n);
 }
 
 /**
@@ -75,10 +75,10 @@ long int_apply_length_option(int n, format_op_t format_op)
 int print_integer(const char *format, int idx, va_list args,
 					format_op_t format_op)
 {
-	long n = va_arg(args, int);
+	long int n = va_arg(args, long int);
 	int printed_chars = 0;
 	short is_negative;
-	unsigned int p, n1;
+	unsigned long int p, n1;
 
 	(void)format;
 	(void)idx;
