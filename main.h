@@ -72,6 +72,8 @@ int print_custom_string(const char *format, int idx, va_list args,
 				format_op_t format_op);
 int print_pointer(const char *format, int idx, va_list args,
 				format_op_t format_op);
+int print_unsupported_format(const char *format, int *start_idx, int end_idx,
+				format_op_t format_op);
 
 /* helpers */
 short set_flag(const char *format, int *current_idx, format_op_t *format_op);
