@@ -1,6 +1,23 @@
 #include "main.h"
 
 /**
+ * ptr_apply_flag_option - a function that applies flag options to integers
+ * @format_op: format options
+ *
+ * Return: number of printed characters
+ */
+int ptr_apply_flag_option(format_op_t format_op)
+{
+	int printed_chars = 0;
+
+	if (format_op.plus)
+		printed_chars += _putchar('+');
+	else if (format_op.space)
+		printed_chars += _putchar(' ');
+	return (printed_chars);
+}
+
+/**
  * print_pointer - a function that prints a pointer type
  * @format: given format, used for format specification
  * @idx: current index for the format
@@ -22,10 +39,7 @@ int print_pointer(const char *format, int idx, va_list args,
 	if (address == NULL)
 		return (_puts("(nil)"));
 	num = (unsigned long)address;
-	if (format_op.plus)
-		printed_chars += _putchar('+');
-	else if (format_op.space)
-		printed_chars += _putchar(' ');
+	printed_chars += ptr_apply_flag_option(format_op);
 	printed_chars += _puts(pointer_delimiter);
 	printed_chars += write_hex(SMALL_HEX, num);
 	return (printed_chars);

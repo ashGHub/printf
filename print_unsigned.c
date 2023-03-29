@@ -1,6 +1,23 @@
 #include "main.h"
 
 /**
+ * unsigned_apply_length_option - applys length modifier option
+ * @n: number to convert to the supported length
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+unsigned int unsigned_apply_length_option(unsigned int n,
+				format_op_t format_op)
+{
+	if (format_op._short)
+		return ((unsigned short)n);
+	if (format_op._long)
+		return ((unsigned long)n);
+	return (n);
+}
+
+/**
  * get_unsigned_string - get unsigned string in reverse
  * @num: unsigned number to print
  * @idx: current index of the unsigned string
@@ -45,6 +62,7 @@ int print_unsigned(const char *format, int idx, va_list args,
 	(void)format_op;
 	(void)format;
 	(void)idx;
+	num = unsigned_apply_length_option(num, format_op);
 	unsigned_str = get_unsigned_string(num, &i);
 	if (unsigned_str == NULL)
 		return (-1);

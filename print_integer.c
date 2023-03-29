@@ -31,6 +31,39 @@ unsigned int _abs(int n)
 }
 
 /**
+ * int_apply_flag_option - a function that applies flag options to integers
+ * @format_op: format options
+ *
+ * Return: number of printed characters
+ */
+int int_apply_flag_option(format_op_t format_op)
+{
+	int printed_chars = 0;
+
+	if (format_op.plus)
+		printed_chars += _putchar('+');
+	else if (format_op.space)
+		printed_chars += _putchar(' ');
+	return (printed_chars);
+}
+
+/**
+ * int_apply_length_option - a function that applys length modifier option
+ * @n: number to convert to the supported length
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+int int_apply_length_option(int n, format_op_t format_op)
+{
+	if (format_op._short)
+		return ((short)n);
+	if (format_op._long)
+		return ((long)n);
+	return (n);
+}
+
+/**
  * print_integer - a function that prints a integer type
  * @format: given format, used for format specification
  * @idx: current index for the format
@@ -44,17 +77,19 @@ int print_integer(const char *format, int idx, va_list args,
 {
 	int n = va_arg(args, int);
 	int printed_chars = 0;
-	short is_negative = n < 0;
-	unsigned int p, n1 = _abs(n);
+	short is_negative;
+	unsigned int p, n1;
 
 	(void)format;
 	(void)idx;
+	n = int_apply_length_option(n, format_op);
+	n1 = _abs(n);
+	if (n != INT_MIN && !format_op._long)
+		is_negative = n < 0;
 	if (is_negative)
 		printed_chars += _putchar('-');
-	else if (format_op.plus)
-		printed_chars += _putchar('+');
-	else if (format_op.space)
-		printed_chars += _putchar(' ');
+	else
+		printed_chars += int_apply_flag_option(format_op);
 	for (p = digit_part(n1); p != 0; p /= 10)
 		printed_chars += _putchar((n1 / p) % 10 + '0');
 	return (printed_chars);

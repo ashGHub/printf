@@ -1,6 +1,38 @@
 #include "main.h"
 
 /**
+ * octal_apply_flag_option - a function that applies flag options to integers
+ * @num: number to check before applying option
+ * @format_op: format options
+ *
+ * Return: number of printed characters
+ */
+int octal_apply_flag_option(unsigned int num, format_op_t format_op)
+{
+	int printed_chars = 0;
+
+	if (format_op.hash && num != 0)
+		printed_chars += _putchar('0');
+	return (printed_chars);
+}
+
+/**
+ * octal_apply_length_option - a function that applys length modifier option
+ * @n: number to convert to the supported length
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+unsigned int octal_apply_length_option(unsigned int n, format_op_t format_op)
+{
+	if (format_op._short)
+		return ((unsigned short)n);
+	if (format_op._long)
+		return ((unsigned long)n);
+	return (n);
+}
+
+/**
  * get_octal_string - get octal string in reverse
  * @num: number to convert to octal
  * @idx: current index of the octal string
@@ -45,11 +77,11 @@ int print_octal(const char *format, int idx, va_list args,
 
 	(void)format;
 	(void)idx;
+	num = octal_apply_length_option(num, format_op);
 	octal = get_octal_string(num, &i);
 	if (octal == NULL)
 		return (-1);
-	if (format_op.hash && num != 0)
-		printed_chars += _putchar('0');
+	printed_chars += octal_apply_flag_option(num, format_op);
 	for (j = i; j >= 0; j--)
 		printed_chars += _putchar(octal[j]);
 	free(octal);

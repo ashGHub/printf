@@ -19,6 +19,8 @@
  * @plus: plus exists or not
  * @space: space exists or not
  * @hash: hash exists or not
+ * @_long: long exists or not
+ * @_short: short exists or not
  *
  * Description: this a structure for registering format options
  */
@@ -27,6 +29,8 @@ typedef struct format_options
 	short plus;
 	short space;
 	short hash;
+	short _long;
+	short _short;
 } format_op_t;
 
 /**

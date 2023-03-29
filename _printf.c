@@ -42,7 +42,7 @@ int print_format(const char *format, int *idx, va_list args)
 {
 	int i = ++(*idx), sp_idx = -1;
 	int (*print)(const char *, int, va_list, format_op_t);
-	format_op_t format_op = {0, 0, 0};
+	format_op_t format_op = {0, 0, 0, 0, 0};
 
 	if (format[i] == '\0')
 		return (-1);

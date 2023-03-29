@@ -61,7 +61,7 @@ short set_field(const char *format, int *current_idx, format_op_t *format_op)
 	(void)format_op;
 	while (format[(*current_idx)] && is_num)
 	{
-		c = format[(*current_idx)] - '0';
+		c = format[*current_idx] - '0';
 		is_num = (c >= 0 && c <= 9);
 		if (is_num)
 		{
@@ -111,12 +111,25 @@ short set_length(const char *format, int *current_idx, format_op_t *format_op)
 	(void)format_op;
 	for (i = 0; length_mod[i]; i++)
 	{
-		current = format[(*current_idx)];
+		current = format[*current_idx];
 		is_length = (length_mod[i] == current);
 		if (is_length)
+		{
+			switch (current)
+			{
+			case 'l':
+				format_op->_long = 1;
+				break;
+			case 'h':
+				format_op->_short = 1;
+				break;
+			}
 			break;
+		}
 	}
 	next = format[*current_idx + 1];
+	if (is_length)
+		(*current_idx)++;
 	if (is_length && IS_H_OR_L(current) && IS_H_OR_L(next))
 		(*current_idx)++;
 	return (is_length);
