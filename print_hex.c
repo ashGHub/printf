@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * hex_apply_flag_option - a function that applies flag options to integers
+ * hex_apply_flag_option - a function that applies flag options to hexadecimals
  * @num: number to check before applying option
- * @specifier: hex type, small or captial
+ * @specifier: hex type, small or capital
  * @format_op: format options
  *
  * Return: number of printed characters
@@ -13,6 +13,8 @@ int hex_apply_flag_option(unsigned int num, char specifier,
 {
 	int printed_chars = 0;
 
+	if (format_op.space)
+		printed_chars += _putchar(' ');
 	if (format_op.hash && num != 0)
 		printed_chars += _putchar('0') + _putchar(specifier);
 	return (printed_chars);

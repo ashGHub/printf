@@ -1,6 +1,21 @@
 #include "main.h"
 
 /**
+ * unsigned_apply_flag_option - a function that applies flag options to unsigned
+ * @format_op: format options
+ *
+ * Return: number of printed characters
+ */
+int unsigned_apply_flag_option(format_op_t format_op)
+{
+	int printed_chars = 0;
+
+	if (format_op.space)
+		printed_chars += _putchar(' ');
+	return (printed_chars);
+}
+
+/**
  * get_unsigned_string - get unsigned string in reverse
  * @num: unsigned number to print
  * @idx: current index of the unsigned string
@@ -48,6 +63,7 @@ int print_unsigned(const char *format, int idx, va_list args,
 	(void)idx;
 	num = convert_to_unsigned(num, format_op);
 	unsigned_str = get_unsigned_string(num, &i);
+	printed_chars += unsigned_apply_flag_option(format_op);
 	if (unsigned_str == NULL)
 		return (-1);
 	for (j = i; j >= 0; j--)

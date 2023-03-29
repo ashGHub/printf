@@ -92,17 +92,17 @@ int main(void)
 	printf("printf len = %d\n", len);
 
 	_printf("______ Octal negative output _printf\n");
-	len = _printf("_printf [%+u]\n", -42);
+	len = _printf("_printf [%+o]\n", -42);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [%+u]\n", -42);
+	len = printf("printf [%+o]\n", -42);
 	printf("printf len = %d\n", len);
-	len = _printf("_printf [% u]\n", -42);
+	len = _printf("_printf [% o]\n", -42);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [% u]\n", -42);
+	len = printf("printf [% o]\n", -42);
 	printf("printf len = %d\n", len);
-	len = _printf("_printf [%#u]\n", -42);
+	len = _printf("_printf [%#o]\n", -42);
 	printf("_printf len = %d\n", len);
-	len = printf("printf [%#u]\n", -42);
+	len = printf("printf [%#o]\n", -42);
 	printf("printf len = %d\n", len);
 
 	len = _printf("_printf [%#o]\n", INT_MIN);
