@@ -25,9 +25,7 @@ unsigned int _abs(long n)
 {
 	if (n >= 0)
 		return (n);
-	if (n == INT_MIN)
-		return ((unsigned int)n);
-	return (-n);
+	return ((unsigned int)(-1 * n));
 }
 
 /**
