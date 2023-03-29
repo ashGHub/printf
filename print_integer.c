@@ -31,45 +31,31 @@ unsigned int _abs(int n)
 }
 
 /**
- * print_number - prints an integer
- * @n: integer to be printed
- *
- * Return: number of printed characters
- */
-int print_number(int n)
-{
-	unsigned int p, n1 = _abs(n);
-	int printed = 0, printed_chars = 0;
-	short is_negative = n < 0;
-
-	if (is_negative)
-		printed = _putchar('-');
-	if (printed == -1)
-		return (-1);
-	printed_chars += printed;
-	for (p = digit_part(n1); p != 0; p /= 10)
-	{
-		printed = _putchar((n1 / p) % 10 + '0');
-		if (printed == -1)
-			return (-1);
-		printed_chars += printed;
-	}
-	return (printed_chars);
-}
-
-/**
  * print_integer - a function that prints a integer type
  * @format: given format, used for format specification
- * @idx: pointer to current index for the format
+ * @idx: current index for the format
  * @args: arguments passed
+ * @format_op: format options
  *
  * Return: number of characters printed
  */
-int print_integer(const char *format, int *idx, va_list args)
+int print_integer(const char *format, int idx, va_list args,
+					format_op_t format_op)
 {
-	int d = va_arg(args, int);
+	int n = va_arg(args, int);
+	int printed_chars = 0;
+	short is_negative = n < 0;
+	unsigned int p, n1 = _abs(n);
 
 	(void)format;
-	(*idx)++;
-	return (print_number(d));
+	(void)idx;
+	if (is_negative)
+		printed_chars += _putchar('-');
+	else if (format_op.plus)
+		printed_chars += _putchar('+');
+	else if (format_op.space)
+		printed_chars += _putchar(' ');
+	for (p = digit_part(n1); p != 0; p /= 10)
+		printed_chars += _putchar((n1 / p) % 10 + '0');
+	return (printed_chars);
 }

@@ -30,32 +30,28 @@ char *get_octal_string(unsigned int num, int *idx)
 /**
  * print_octal - a function that prints octal type
  * @format: given format, used for format specification
- * @idx: pointer to current index for the format
+ * @idx: current index for the format
  * @args: arguments passed
+ * @format_op: format options
  *
  * Return: number of characters printed
  */
-int print_octal(const char *format, int *idx, va_list args)
+int print_octal(const char *format, int idx, va_list args,
+				format_op_t format_op)
 {
-	int i = 0, j, printed_chars = 0, printed = 0;
+	int i = 0, j, printed_chars = 0;
 	unsigned int num = va_arg(args, int);
 	char *octal;
 
 	(void)format;
+	(void)idx;
 	octal = get_octal_string(num, &i);
 	if (octal == NULL)
 		return (-1);
+	if (format_op.hash && num != 0)
+		printed_chars += _putchar('0');
 	for (j = i; j >= 0; j--)
-	{
-		printed = _putchar(octal[j]);
-		if (printed == -1)
-		{
-			free(octal);
-			return (-1);
-		}
-		printed_chars += printed;
-	}
-	(*idx)++;
+		printed_chars += _putchar(octal[j]);
 	free(octal);
 	return (printed_chars);
 }

@@ -40,22 +40,14 @@ char *get_hex_string(unsigned long num, char x, int *idx)
  */
 int write_hex(char hex_type, unsigned long num)
 {
-	int i = 0, j, printed_chars = 0, printed = 0;
+	int i = 0, j, printed_chars = 0;
 	char *hex;
 
 	hex = get_hex_string(num, hex_type, &i);
 	if (hex == NULL)
 		return (-1);
 	for (j = i; j >= 0; j--)
-	{
-		printed = _putchar(hex[j]);
-		if (printed == -1)
-		{
-			free(hex);
-			return (-1);
-		}
-		printed_chars += printed;
-	}
+		printed_chars += _putchar(hex[j]);
 	free(hex);
 	return (printed_chars);
 }

@@ -29,32 +29,27 @@ char *get_unsigned_string(unsigned int num, int *idx)
 /**
  * print_unsigned - a function that prints an unsigned integer
  * @format: given format, used for format specification
- * @idx: pointer to current index for the format
+ * @idx: current index for the format
  * @args: arguments passed
+ * @format_op: format options
  *
  * Return: number of characters printed
  */
-int print_unsigned(const char *format, int *idx, va_list args)
+int print_unsigned(const char *format, int idx, va_list args,
+					format_op_t format_op)
 {
-	int i = 0, j, printed_chars = 0, printed = 0;
+	int i = 0, j, printed_chars = 0;
 	unsigned int num = va_arg(args, int);
 	char *unsigned_str;
 
+	(void)format_op;
 	(void)format;
+	(void)idx;
 	unsigned_str = get_unsigned_string(num, &i);
 	if (unsigned_str == NULL)
 		return (-1);
 	for (j = i; j >= 0; j--)
-	{
-		printed = _putchar(unsigned_str[j]);
-		if (printed == -1)
-		{
-			free(unsigned_str);
-			return (-1);
-		}
-		printed_chars += printed;
-	}
-	(*idx)++;
+		printed_chars += _putchar(unsigned_str[j]);
 	free(unsigned_str);
 	return (printed_chars);
 }

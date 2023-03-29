@@ -1,24 +1,40 @@
 #include "main.h"
 
 /**
- * is_flag - ignores all flags
+ * set_flag - sets supported flags
  * @format: given format, used for format specification
  * @current_idx: current index to iterate the format from
+ * @format_op: format options
  *
  * Return: 1 if it contains flags, 0 (otherwise)
  */
-short is_flag(const char *format, int *current_idx)
+short set_flag(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int i, is_flag = 1, has_seen_flag = 0;
 	char flags[] = "#0- +'I";
 
+	(void)format_op;
 	while (format[(*current_idx)] && is_flag)
 	{
 		for (i = 0; flags[i]; i++)
 		{
-			is_flag = (flags[i] == format[(*current_idx)]);
+			is_flag = (flags[i] == format[*current_idx]);
 			if (is_flag)
+			{
+				switch (format[*current_idx])
+				{
+				case '+':
+					format_op->plus = 1;
+					break;
+				case ' ':
+					format_op->space = 1;
+					break;
+				case '#':
+					format_op->hash = 1;
+					break;
+				}
 				break;
+			}
 		}
 		if (is_flag)
 		{
@@ -30,17 +46,19 @@ short is_flag(const char *format, int *current_idx)
 }
 
 /**
- * is_field - ignores field
+ * set_field - sets the field
  * @format: given format, used for format specification
  * @current_idx: current index to iterate the format from
+ * @format_op: format options
  *
  * Return: 1 if it contains field, 0 (otherwise)
  */
-short is_field(const char *format, int *current_idx)
+short set_field(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int is_num = 1, has_seen_field = 0;
 	int c;
 
+	(void)format_op;
 	while (format[(*current_idx)] && is_num)
 	{
 		c = format[(*current_idx)] - '0';
@@ -55,37 +73,42 @@ short is_field(const char *format, int *current_idx)
 }
 
 /**
- * is_precision - ignores precision
+ * set_precision - sets the precision
  * @format: given format, used for format specification
  * @current_idx: current index to iterate the format from
+ * @format_op: format options
  *
  * Return: 1 if it contains precision, 0 (otherwise)
  */
-short is_precision(const char *format, int *current_idx)
+short set_precision(const char *format, int *current_idx,
+					format_op_t *format_op)
 {
 	short is_precision;
 
+	(void)format_op;
 	if (format[(*current_idx)] != '.')
 		return (0);
 	++(*current_idx);
-	is_precision = is_field(format, current_idx);
+	is_precision = set_field(format, current_idx, format_op);
 	if (!is_precision)
 		--(*current_idx);
 	return (is_precision);
 }
 
 /**
- * is_length - ignores length
+ * set_length - sets the length
  * @format: given format, used for format specification
  * @current_idx: current index to iterate the format from
+ * @format_op: format options
  *
  * Return: 1 if it contains length, 0 (otherwise)
  */
-short is_length(const char *format, int *current_idx)
+short set_length(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int i, is_length = 0;
 	char length_mod[] = "hlqLjzZt", current, next;
 
+	(void)format_op;
 	for (i = 0; length_mod[i]; i++)
 	{
 		current = format[(*current_idx)];
@@ -100,17 +123,18 @@ short is_length(const char *format, int *current_idx)
 }
 
 /**
- * is_format_option - ignores flag, field, precision and length
+ * set_format_option - sets the flag, field, precision and length
  * @format: given format, used for format specification
  * @current_idx: current index to iterate the format from
+ * @format_op: format options
  *
  * Return: 1 if it contains one of the options, 0 (otherwise)
  */
-short is_format_option(const char *format, int *current_idx)
+short set_format_option(const char *format, int *current_idx,
+					format_op_t *format_op)
 {
-	return (is_flag(format, current_idx) ||
-			is_field(format, current_idx) ||
-			is_precision(format, current_idx) ||
-			is_length(format, current_idx));
+	return (set_flag(format, current_idx, format_op) ||
+			set_field(format, current_idx, format_op) ||
+			set_precision(format, current_idx, format_op) ||
+			set_length(format, current_idx, format_op));
 }
-

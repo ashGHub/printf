@@ -30,32 +30,27 @@ char *get_binary_string(unsigned int num, int *idx)
 /**
  * print_binary - a function that prints a binary type
  * @format: given format, used for format specification
- * @idx: pointer to current index for the format
+ * @idx: current index for the format
  * @args: arguments passed
+ * @format_op: format options
  *
  * Return: number of characters printed
  */
-int print_binary(const char *format, int *idx, va_list args)
+int print_binary(const char *format, int idx, va_list args,
+					format_op_t format_op)
 {
-	int i = 0, j, printed_chars = 0, printed = 0;
+	int i = 0, j, printed_chars = 0;
 	unsigned int num = va_arg(args, int);
 	char *binary;
 
 	(void)format;
+	(void)format_op;
+	(void)idx;
 	binary = get_binary_string(num, &i);
 	if (binary == NULL)
 		return (-1);
 	for (j = i; j >= 0; j--)
-	{
-		printed = _putchar(binary[j]);
-		if (printed == -1)
-		{
-			free(binary);
-			return (-1);
-		}
-		printed_chars += printed;
-	}
-	(*idx)++;
+		printed_chars += _putchar(binary[j]);
 	free(binary);
 	return (printed_chars);
 }

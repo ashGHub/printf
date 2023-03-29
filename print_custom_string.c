@@ -31,68 +31,57 @@ char *get_ascii_hex_string(char ch)
 int print_ascii_hex(char non_printable)
 {
 	int max_hex_ascii_digit = 2;
-	int j, printed_chars = 0, printed = 0;
+	int j, printed_chars = 0;
 	char *hex_delimiter = "\\x", *hex;
 
 	hex = get_ascii_hex_string(non_printable);
 	if (hex == NULL)
 		return (-1);
-	printed = _puts(hex_delimiter);
-	if (printed == -1)
-		return (-1);
-	printed_chars += printed;
+	printed_chars += _puts(hex_delimiter);
 	for (j = max_hex_ascii_digit - 1; j >= 0; j--)
-	{
-		printed = _putchar(hex[j]);
-		if (printed == -1)
-		{
-			free(hex);
-			return (-1);
-		}
-		printed_chars += printed;
-	}
+		printed_chars += _putchar(hex[j]);
 	free(hex);
 	return (printed_chars);
 }
 
 /**
- * is_non_printable_char - checks if a character is printable or not
+ * is_printable_char - checks if a character is printable or not
  * @c: character to check
  *
  * Return: 1 if the character is printable, 0 otherwise
  */
-short is_non_printable_char(char c)
+short is_printable_char(char c)
 {
-	return ((c > 0 && c < 32) || c >= 127);
+	return (c >= 32 && c < 127);
 }
 
 /**
  * print_custom_string - a function that prints a custom string, if the
  *						given string contains non printable characters
  * @format: given format, used for format specification
- * @idx: pointer to current index for the format
+ * @idx: current index for the format
  * @args: arguments passed
+ * @format_op: format options
  *
  * Return: number of characters printed
  */
-int print_custom_string(const char *format, int *idx, va_list args)
+int print_custom_string(const char *format, int idx, va_list args,
+						format_op_t format_op)
 {
-	int i, printed_chars = 0, printed = 0;
+	int i, printed_chars = 0;
 	char *str = va_arg(args, char *);
 
 	(void)format;
+	(void)format_op;
+	(void)idx;
 	if (str == NULL)
 		str = "(null)";
 	for (i = 0; str && str[i]; i++)
 	{
-		if (is_non_printable_char(str[i]))
-			printed = print_ascii_hex(str[i]);
+		if (is_printable_char(str[i]))
+			printed_chars += _putchar(str[i]);
 		else
-			printed = _putchar(str[i]);
-		if (printed == -1)
-			return (-1);
-		printed_chars += printed;
+			printed_chars += print_ascii_hex(str[i]);
 	}
-	(*idx)++;
 	return (printed_chars);
 }

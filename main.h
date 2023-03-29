@@ -15,6 +15,21 @@
 #define CAPITAL_HEX 88
 
 /**
+ * struct format_options - a structure for all format options
+ * @plus: plus exists or not
+ * @space: space exists or not
+ * @hash: hash exists or not
+ *
+ * Description: this a structure for registering format options
+ */
+typedef struct format_options
+{
+	short plus;
+	short space;
+	short hash;
+} format_op_t;
+
+/**
  * struct format - a structure for the conversion specifiers
  * @type: conversion specifier
  * @handle: a function for printing the data type
@@ -25,7 +40,7 @@
 typedef struct format
 {
 	char *type;
-	int (*handle)(const char *, int *, va_list);
+	int (*handle)(const char *, int, va_list, format_op_t);
 } format_t;
 
 int _putchar(char ch);
@@ -34,27 +49,41 @@ int _flush(void);
 
 /* print functions */
 int _printf(const char *format, ...);
-int print_char(const char *format, int *idx, va_list args);
-int print_string(const char *format, int *idx, va_list args);
-int print_integer(const char *format, int *idx, va_list args);
-int print_binary(const char *format, int *idx, va_list args);
-int print_unsigned(const char *format, int *idx, va_list args);
-int print_octal(const char *format, int *idx, va_list args);
-int print_hex(const char *format, int *idx, va_list args);
-int print_custom_string(const char *format, int *idx, va_list args);
-int print_pointer(const char *format, int *idx, va_list args);
+/* conversion specifier handlers */
+int print_char(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_string(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_integer(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_binary(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_unsigned(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_octal(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_hex(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_custom_string(const char *format, int idx, va_list args,
+				format_op_t format_op);
+int print_pointer(const char *format, int idx, va_list args,
+				format_op_t format_op);
 
 /* helpers */
-short is_flag(const char *format, int *current_idx);
-short is_field(const char *format, int *current_idx);
-short is_length(const char *format, int *current_idx);
-short is_precision(const char *format, int *current_idx);
-short is_format_option(const char *format, int *current_idx);
+short set_flag(const char *format, int *current_idx, format_op_t *format_op);
+short set_field(const char *format, int *current_idx, format_op_t *format_op);
+short set_length(const char *format, int *current_idx,
+				format_op_t *format_op);
+short set_precision(const char *format, int *current_idx,
+					format_op_t *format_op);
+short set_format_option(const char *format, int *current_idx,
+						format_op_t *format_op);
 
 /* printf support functions */
-int (*get_print_function(const char *c))(const char *, int *, va_list);
-int get_specifier_idx(const char *format, int current_idx);
-int print_conversion_specifier(const char *format, int *idx, va_list args);
+int (*get_print_fun(const char *c))(const char *, int, va_list, format_op_t);
+int get_specifier_idx(const char *format, int *current_idx,
+						format_op_t *format_op);
+int print_format(const char *format, int *idx, va_list args);
 short is_supported_specifier(const char *format, int current_idx);
 
 /* util functions */
