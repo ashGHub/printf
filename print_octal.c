@@ -11,8 +11,6 @@ int octal_apply_flag_option(unsigned int num, format_op_t format_op)
 {
 	int printed_chars = 0;
 
-	if (format_op.space)
-		printed_chars += _putchar(' ');
 	if (format_op.hash && num != 0)
 		printed_chars += _putchar('0');
 	return (printed_chars);
