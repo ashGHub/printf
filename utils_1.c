@@ -130,8 +130,6 @@ short set_length(const char *format, int *current_idx, format_op_t *format_op)
 	next = format[*current_idx + 1];
 	if (is_length)
 		(*current_idx)++;
-	if (is_length && IS_H_OR_L(current) && IS_H_OR_L(next))
-		(*current_idx)++;
 	return (is_length);
 }
 
