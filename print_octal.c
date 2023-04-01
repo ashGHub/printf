@@ -26,7 +26,7 @@ int octal_apply_flag_option(unsigned long int num, format_op_t format_op)
 char *get_octal_string(unsigned long int num, int *idx)
 {
 	short base = 8;
-	unsigned long int i = *idx, max_octal_digit = 11, quo = 0;
+	unsigned long int i = *idx, max_octal_digit = 23, quo = 0;
 	char *octal;
 
 	octal = malloc(max_octal_digit * sizeof(char));
