@@ -10,6 +10,11 @@ int main(void)
 {
 	int len = 0;
 
+	len = _printf("_printf [ll][%llu]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [ll][%llu]\n", 100);
+	printf("printf len = %d\n", len);
+
 	/* ------------------------------------------------------ */
 	/* ------------------------------------------------------ */
 	/* Normal output - Integer*/
@@ -265,6 +270,50 @@ int main(void)
 	printf("---------------------------------------\n");
 
 
+    /* unknown */
+	printf("_____________ Unknow\n");
+
+	len = _printf("_printf [h][%hhd]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hhd]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [ll][%lld]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [ll][%lld]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [hh][%hho]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hho]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [ll][%llo]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [ll][%llo]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [hh][%hhx]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [hh][%hhx]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [ll][%llx]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [ll][%llx]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [hh][%hhu]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [hh][%hhu]\n", 100);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [ll][%llu]\n", 100);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [ll][%llu]\n", 100);
+	printf("printf len = %d\n", len);
+
+	printf("---------------------------------------\n");
 
 	return (0);
 }
