@@ -11,7 +11,7 @@
 short set_flag(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int i, is_flag = 1, has_seen_flag = 0;
-	char flags[] = "#0- +'I";
+	char flags[] = "# +";
 
 	(void)format_op;
 	while (format[(*current_idx)] && is_flag)
@@ -106,7 +106,7 @@ short set_precision(const char *format, int *current_idx,
 short set_length(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int i, is_length = 0;
-	char length_mod[] = "hlqLjzZt", current, next;
+	char length_mod[] = "hl", current, next;
 
 	(void)format_op;
 	for (i = 0; length_mod[i]; i++)
@@ -127,7 +127,7 @@ short set_length(const char *format, int *current_idx, format_op_t *format_op)
 			break;
 		}
 	}
-	next = format[*current_idx];
+	next = format[*current_idx + 1];
 	if (is_length)
 		(*current_idx)++;
 	if (is_length && IS_H_OR_L(current) && IS_H_OR_L(next))
