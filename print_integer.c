@@ -57,14 +57,14 @@ int int_apply_flag_option(format_op_t format_op)
 int print_integer(const char *format, int idx, va_list args,
 					format_op_t format_op)
 {
-	long int n = va_arg(args, long int);
+	long int n;
 	int printed_chars = 0;
 	short is_negative;
 	unsigned long int p, n1;
 
 	(void)format;
 	(void)idx;
-	n = convert_to_signed(n, format_op);
+	n = length_option_signed(args, format_op);
 	n1 = _abs(n);
 	is_negative = n < 0;
 	if (is_negative)

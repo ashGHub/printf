@@ -7,7 +7,7 @@
  *
  * Return: number of printed characters
  */
-int octal_apply_flag_option(unsigned int num, format_op_t format_op)
+int octal_apply_flag_option(unsigned long int num, format_op_t format_op)
 {
 	int printed_chars = 0;
 
@@ -56,12 +56,12 @@ int print_octal(const char *format, int idx, va_list args,
 				format_op_t format_op)
 {
 	int i = 0, j, printed_chars = 0;
-	unsigned long int num = va_arg(args, unsigned long int);
+	unsigned long int num;
 	char *octal;
 
 	(void)format;
 	(void)idx;
-	num = convert_to_unsigned(num, format_op);
+	num = length_option_unsigned(args, format_op);
 	octal = get_octal_string(num, &i);
 	if (octal == NULL)
 		return (-1);

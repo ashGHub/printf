@@ -8,13 +8,11 @@
  *
  * Return: number of printed characters
  */
-int hex_apply_flag_option(unsigned int num, char specifier,
+int hex_apply_flag_option(unsigned long int num, char specifier,
 							format_op_t format_op)
 {
 	int printed_chars = 0;
 
-	if (format_op.space)
-		printed_chars += _putchar(' ');
 	if (format_op.hash && num != 0)
 		printed_chars += _putchar('0') + _putchar(specifier);
 	return (printed_chars);
@@ -34,9 +32,9 @@ int print_hex(const char *format, int idx, va_list args,
 {
 	int printed_chars = 0;
 	char specifier = format[idx];
-	unsigned long int num = va_arg(args, unsigned long int);
+	unsigned long int num;
 
-	num = convert_to_unsigned(num, format_op);
+	num = length_option_unsigned(args, format_op);
 	printed_chars += hex_apply_flag_option(num, specifier, format_op);
 	printed_chars += write_hex(specifier, num);
 	return (printed_chars);

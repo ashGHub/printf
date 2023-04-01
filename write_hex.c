@@ -3,12 +3,12 @@
 /**
  * get_hex_string - get hex string in reverse
  * @num: number to convert to hex
- * @x: hex type, small or capital
+ * @hex_type: hex type, small or capital
  * @idx: current index of the hex string
  *
  * Return: hex string in reverse
  */
-char *get_hex_string(unsigned long int num, char x, int *idx)
+char *get_hex_string(unsigned long int num, char hex_type, int *idx)
 {
 	short base = 16;
 	unsigned long i = *idx, max_hex_digit = 16, quo = 0;
@@ -16,7 +16,7 @@ char *get_hex_string(unsigned long int num, char x, int *idx)
 	char capital_hexes[16] = "0123456789ABCDEF";
 	char *current_hex, *hex;
 
-	current_hex = x == SMALL_HEX ? small_hexes : capital_hexes;
+	current_hex = hex_type == SMALL_HEX ? small_hexes : capital_hexes;
 	hex = malloc(max_hex_digit * sizeof(char));
 	if (hex == NULL)
 		return (NULL);

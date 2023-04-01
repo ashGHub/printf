@@ -96,7 +96,7 @@ short is_supported_specifier(const char *format, int current_idx);
 int write_hex(char hex_type, unsigned long num);
 
 /* options utils */
-long int convert_to_signed(long int n, format_op_t format_op);
-unsigned long convert_to_unsigned(unsigned long int n, format_op_t format_op);
+long length_option_signed(va_list args, format_op_t format_op);
+unsigned long length_option_unsigned(va_list args, format_op_t format_op);
 
 #endif

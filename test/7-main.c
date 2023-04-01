@@ -9,6 +9,7 @@
 int main(void)
 {
 	int len = 0;
+
 	/* ------------------------------------------------------ */
 	/* Normal output */
 	printf("______ Normal positive output _printf\n");
@@ -26,7 +27,6 @@ int main(void)
 	printf("printf len = %d\n", len);
 	len = printf("printf [%#d]\n", 72);
 	printf("printf len = %d\n", len);
-
 
 	/* ------------------------------------------------------ */
 	/* Normal output */
@@ -63,7 +63,6 @@ int main(void)
 	printf("printf len = %d\n", len);
 	len = printf("printf [%#u]\n", 72);
 	printf("printf len = %d\n", len);
-
 
 	/* ------------------------------------------------------ */
 	/* Octal output */
@@ -113,6 +112,17 @@ int main(void)
 	/* ------------------------------------------------------ */
 	/* Hex output */
 	_printf("______ Hex positive output _printf\n");
+
+	len = _printf("_printf [%x]\n");
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%x]\n");
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [%d]\n");
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%d]\n");
+	printf("printf len = %d\n", len);
+
 	len = _printf("_printf [%+x]\n", 255);
 	printf("_printf len = %d\n", len);
 	len = printf("printf [%+x]\n", 255);
@@ -131,12 +141,10 @@ int main(void)
 	len = printf("printf [%#X]\n", 0);
 	printf("printf len = %d\n", len);
 
-
 	len = _printf("_printf [%#X]\n", UINT_MAX);
 	printf("_printf len = %d\n", len);
 	len = printf("printf [%#X]\n", UINT_MAX);
 	printf("printf len = %d\n", len);
-
 
 	_printf("______ Hex negative output _printf\n");
 	len = _printf("_printf [%+x]\n", -42);
@@ -162,6 +170,26 @@ int main(void)
 	len = printf("printf [%#x]\n", INT_MIN);
 	printf("printf len = %d\n", len);
 
+	len = _printf("_printf [%#x]\n", 'C');
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%#x]\n", 'C');
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [%#x]\n", UINT_MAX);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%#x]\n", UINT_MAX);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [%#x]\n", ULONG_MAX);
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%#x]\n", ULONG_MAX);
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [%#x]\n");
+	printf("_printf len = %d\n", len);
+	len = printf("printf [%#x]\n");
+	printf("printf len = %d\n", len);
+
 	_printf("______ Hex-Capital _printf\n");
 	len = _printf("_printf [%#X]\n", 42);
 	printf("_printf len = %d\n", len);
@@ -169,24 +197,44 @@ int main(void)
 	printf("printf len = %d\n", len);
 
 	/* ------------------------------------------------------ */
+	
 	/* Unknown */
 	printf("______ Unknown\n");
 	len = _printf("_printf [%+++    #####d]\n", 72);
 	printf("_len = %d\n", len);
 	len = printf("printf [%+++    #####d]\n", 72);
 	printf("len = %d\n", len);
+
 	len = _printf("_printf [%+p]\n", (void *)0x7ffe637541f0);
 	printf("_len = %d\n", len);
 	len = printf("printf [%+p]\n", (void *)0x7ffe637541f0);
 	printf("len = %d\n", len);
+
 	len = _printf("_printf [% p]\n", (void *)0x7ffe637541f0);
 	printf("_len = %d\n", len);
 	len = printf("printf [% p]\n", (void *)0x7ffe637541f0);
 	printf("len = %d\n", len);
+
 	len = _printf("_printf [%#p]\n", (void *)0x7ffe637541f0);
 	printf("_len = %d\n", len);
 	len = printf("printf [%#p]\n", (void *)0x7ffe637541f0);
 	printf("len = %d\n", len);
+
+	len = _printf("_printf [%+p]\n", 20);
+	printf("_len = %d\n", len);
+	len = printf("printf [%+p]\n", 20);
+	printf("len = %d\n", len);
+
+	len = _printf("_printf [%+p]\n", -20);
+	printf("_len = %d\n", len);
+	len = printf("printf [%+p]\n", -20);
+	printf("len = %d\n", len);
+
+	len = _printf("_printf [%+p]\n", 0);
+	printf("_len = %d\n", len);
+	len = printf("printf [%+p]\n", 0);
+	printf("len = %d\n", len);
+
 	len = _printf("_printf [%+ kd]\n", 65);
 	printf("_len = %d\n", len);
 	len = printf("printf [%+ kd]\n", 65);
