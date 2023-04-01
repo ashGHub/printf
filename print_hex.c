@@ -1,6 +1,20 @@
 #include "main.h"
 
 /**
+ * hex_length_option_unsigned - a function that applys length modifier option
+ * @args: arguments passed
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+unsigned long hex_length_option_unsigned(va_list args, format_op_t format_op)
+{
+	if (format_op._long)
+		return ((unsigned long)va_arg(args, unsigned long));
+	return ((unsigned long int)va_arg(args, int));
+}
+
+/**
  * hex_apply_flag_option - a function that applies flag options to hexadecimals
  * @num: number to check before applying option
  * @specifier: hex type, small or capital
@@ -34,7 +48,7 @@ int print_hex(const char *format, int idx, va_list args,
 	char specifier = format[idx];
 	unsigned long int num;
 
-	num = length_option_unsigned(args, format_op);
+	num = hex_length_option_unsigned(args, format_op);
 	printed_chars += hex_apply_flag_option(num, specifier, format_op);
 	printed_chars += write_hex(specifier, num);
 	return (printed_chars);
