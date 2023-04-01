@@ -50,10 +50,7 @@ int print_format(const char *format, int *idx, va_list args)
 		return (_putchar('%'));
 	sp_idx = get_specifier_idx(format, &i, &format_op);
 	if (sp_idx == -1)
-	{
-		--(*idx);
-		return (_putchar('%'));
-	}
+		return (print_unsupported_format(format, idx, i, format_op));
 	(*idx) = sp_idx;
 	print = get_print_fun(format + sp_idx);
 	return (print(format, *idx, args, format_op));
