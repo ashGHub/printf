@@ -1,33 +1,29 @@
 #include "main.h"
 
 /**
- * length_option_signed - a function that applys length modifier option
- * @args: arguments passed
- * @format_op: format options
+ * digit_part - get digits part
+ * @n: number to find the digit part for
  *
- * Return: converted number
-*/
-long length_option_signed(va_list args, format_op_t format_op)
+ * Return: digit count
+ */
+unsigned int digit_part(unsigned int n)
 {
-	if (format_op._short)
-		return ((short)va_arg(args, int));
-	if (format_op._long)
-		return ((long)va_arg(args, long));
-	return ((int)va_arg(args, int));
+	unsigned int part = 1;
+
+	for ( ; n > 9; n /= 10)
+		part *= 10;
+	return (part);
 }
 
 /**
- * length_option_unsigned - a function that applys length modifier option
- * @args: arguments passed
- * @format_op: format options
+ * _abs - get absolute value of a number
+ * @n: number
  *
- * Return: converted number
-*/
-unsigned long length_option_unsigned(va_list args, format_op_t format_op)
+ * Return: 0 for zero, +ve n for any n
+ */
+unsigned int _abs(long n)
 {
-	if (format_op._short)
-		return ((unsigned short)va_arg(args, unsigned int));
-	if (format_op._long)
-		return ((unsigned long)va_arg(args, unsigned long));
-	return ((unsigned int)va_arg(args, unsigned int));
+	if (n >= 0)
+		return (n);
+	return ((unsigned int)(-1 * n));
 }

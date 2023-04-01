@@ -1,31 +1,19 @@
 #include "main.h"
 
 /**
- * digit_part - get digits part
- * @n: number to find the digit part for
+ * int_length_option - a function that applys length modifier option
+ * @args: arguments passed
+ * @format_op: format options
  *
- * Return: digit count
- */
-unsigned int digit_part(unsigned int n)
+ * Return: converted number
+*/
+long int_length_option(va_list args, format_op_t format_op)
 {
-	unsigned int part = 1;
-
-	for ( ; n > 9; n /= 10)
-		part *= 10;
-	return (part);
-}
-
-/**
- * _abs - get absolute value of a number
- * @n: number
- *
- * Return: 0 for zero, +ve n for any n
- */
-unsigned int _abs(long n)
-{
-	if (n >= 0)
-		return (n);
-	return ((unsigned int)(-1 * n));
+	if (format_op._short)
+		return ((short)va_arg(args, int));
+	if (format_op._long)
+		return ((long)va_arg(args, long));
+	return ((int)va_arg(args, int));
 }
 
 /**
@@ -64,7 +52,7 @@ int print_integer(const char *format, int idx, va_list args,
 
 	(void)format;
 	(void)idx;
-	n = length_option_signed(args, format_op);
+	n = int_length_option(args, format_op);
 	n1 = _abs(n);
 	is_negative = n < 0;
 	if (is_negative)

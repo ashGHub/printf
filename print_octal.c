@@ -1,6 +1,22 @@
 #include "main.h"
 
 /**
+ * octal_length_option - a function that applys length modifier option
+ * @args: arguments passed
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+unsigned long octal_length_option(va_list args, format_op_t format_op)
+{
+	if (format_op._short)
+		return ((unsigned short)va_arg(args, int));
+	if (format_op._long)
+		return ((unsigned long)va_arg(args, unsigned long));
+	return ((unsigned long int)va_arg(args, int));
+}
+
+/**
  * octal_apply_flag_option - a function that applies flag options to integers
  * @num: number to check before applying option
  * @format_op: format options
@@ -61,7 +77,7 @@ int print_octal(const char *format, int idx, va_list args,
 
 	(void)format;
 	(void)idx;
-	num = length_option_unsigned(args, format_op);
+	num = octal_length_option(args, format_op);
 	octal = get_octal_string(num, &i);
 	if (octal == NULL)
 		return (-1);

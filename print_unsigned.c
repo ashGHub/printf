@@ -1,6 +1,22 @@
 #include "main.h"
 
 /**
+ * unsigned_length_option - a function that applys length modifier option
+ * @args: arguments passed
+ * @format_op: format options
+ *
+ * Return: converted number
+*/
+unsigned long unsigned_length_option(va_list args, format_op_t format_op)
+{
+	if (format_op._short)
+		return ((unsigned short)va_arg(args, int));
+	if (format_op._long)
+		return ((unsigned long)va_arg(args, unsigned long));
+	return ((unsigned long int)va_arg(args, int));
+}
+
+/**
  * get_unsigned_string - get unsigned string in reverse
  * @num: unsigned number to print
  * @idx: current index of the unsigned string
@@ -46,7 +62,7 @@ int print_unsigned(const char *format, int idx, va_list args,
 	(void)format_op;
 	(void)format;
 	(void)idx;
-	num = length_option_unsigned(args, format_op);
+	num = unsigned_length_option(args, format_op);
 	unsigned_str = get_unsigned_string(num, &i);
 	if (unsigned_str == NULL)
 		return (-1);
