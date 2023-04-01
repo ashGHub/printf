@@ -235,6 +235,21 @@ int main(void)
 	len = printf("printf [%+p]\n", 0);
 	printf("len = %d\n", len);
 
+	len = _printf("_printf [%+++    #####k]\n", 72);
+	printf("_len = %d\n", len);
+	len = printf("printf [%+++    #####k]\n", 72);
+	printf("len = %d\n", len);
+
+	len = _printf("_printf [%+++    k]\n", 72);
+	printf("_len = %d\n", len);
+	len = printf("printf [%+++    k]\n", 72);
+	printf("len = %d\n", len);
+
+		len = _printf("_printf [%    ###k]\n", 72);
+	printf("_len = %d\n", len);
+	len = printf("printf [%    ###k]\n", 72);
+	printf("len = %d\n", len);
+
 	len = _printf("_printf [%+ kd]\n", 65);
 	printf("_len = %d\n", len);
 	len = printf("printf [%+ kd]\n", 65);
