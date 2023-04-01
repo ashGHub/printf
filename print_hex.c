@@ -19,18 +19,18 @@ unsigned long hex_length_option(va_list args, format_op_t format_op)
 /**
  * hex_apply_flag_option - a function that applies flag options to hexadecimals
  * @num: number to check before applying option
- * @specifier: hex type, small or capital
+ * @hex_type: hex type, small or capital
  * @format_op: format options
  *
  * Return: number of printed characters
  */
-int hex_apply_flag_option(unsigned long int num, char specifier,
+int hex_apply_flag_option(unsigned long int num, char hex_type,
 							format_op_t format_op)
 {
 	int printed_chars = 0;
 
 	if (format_op.hash && num != 0)
-		printed_chars += _putchar('0') + _putchar(specifier);
+		printed_chars += _putchar('0') + _putchar(hex_type);
 	return (printed_chars);
 }
 
@@ -47,11 +47,11 @@ int print_hex(const char *format, int idx, va_list args,
 				format_op_t format_op)
 {
 	int printed_chars = 0;
-	char specifier = format[idx];
+	char hex_type = format[idx];
 	unsigned long int num;
 
 	num = hex_length_option(args, format_op);
-	printed_chars += hex_apply_flag_option(num, specifier, format_op);
-	printed_chars += write_hex(specifier, num);
+	printed_chars += hex_apply_flag_option(num, hex_type, format_op);
+	printed_chars += write_hex(hex_type, num);
 	return (printed_chars);
 }
