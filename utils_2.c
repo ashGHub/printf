@@ -13,7 +13,7 @@ long length_option_signed(va_list args, format_op_t format_op)
 		return ((short)va_arg(args, int));
 	if (format_op._long)
 		return ((long)va_arg(args, long));
-	return ((long)va_arg(args, int));
+	return ((int)va_arg(args, int));
 }
 
 /**
