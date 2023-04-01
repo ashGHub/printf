@@ -7,8 +7,6 @@
 #include <limits.h>
 #include <stdlib.h>
 
-#define IS_H_OR_L(x) ((x) == 'h' || (x) == 'l')
-
 #define BUFFER_SIZE 1024
 #define BUFFER_FLUSH -1
 #define SMALL_HEX 120

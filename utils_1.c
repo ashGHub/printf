@@ -106,7 +106,7 @@ short set_precision(const char *format, int *current_idx,
 short set_length(const char *format, int *current_idx, format_op_t *format_op)
 {
 	int i, is_length = 0;
-	char length_mod[] = "hlqLjzZt", current, next;
+	char length_mod[] = "hlqLjzZt", current;
 
 	(void)format_op;
 	for (i = 0; length_mod[i]; i++)
@@ -127,10 +127,7 @@ short set_length(const char *format, int *current_idx, format_op_t *format_op)
 			break;
 		}
 	}
-	next = format[*current_idx + 1];
 	if (is_length)
-		(*current_idx)++;
-	if (is_length && IS_H_OR_L(current) && IS_H_OR_L(next))
 		(*current_idx)++;
 	return (is_length);
 }

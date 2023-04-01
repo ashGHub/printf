@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * unsigned_length_option - a function that applys length modifier option
+ * unsigned_length_option - a function that apply length modifier option
  * @args: arguments passed
  * @format_op: format options
  *
@@ -10,7 +10,7 @@
 unsigned long unsigned_length_option(va_list args, format_op_t format_op)
 {
 	if (format_op._short)
-		return ((unsigned short)va_arg(args, int));
+		return ((unsigned short)va_arg(args, unsigned int));
 	if (format_op._long)
 		return ((unsigned long)va_arg(args, unsigned long));
 	return ((unsigned long int)va_arg(args, int));

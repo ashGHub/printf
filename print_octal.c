@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * octal_length_option - a function that applys length modifier option
+ * octal_length_option - a function that applies length modifier option
  * @args: arguments passed
  * @format_op: format options
  *
