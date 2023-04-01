@@ -13,7 +13,7 @@ unsigned long hex_length_option(va_list args, format_op_t format_op)
 		return ((unsigned short)va_arg(args, unsigned int));
 	if (format_op._long)
 		return ((unsigned long)va_arg(args, unsigned long));
-	return ((unsigned long int)va_arg(args, int));
+	return ((unsigned int)va_arg(args, unsigned int));
 }
 
 /**
