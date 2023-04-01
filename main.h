@@ -12,6 +12,8 @@
 #define SMALL_HEX 120
 #define CAPITAL_HEX 88
 
+#define IS_H_OR_L(x) ((x) == 'h' || (x) == 'l')
+
 /**
  * struct format_options - a structure for all format options
  * @plus: plus exists or not

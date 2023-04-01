@@ -273,6 +273,16 @@ int main(void)
     /* unknown */
 	printf("_____________ Unknow\n");
 
+	len = _printf("_printf [h][%lc]\n", 'A');
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%lc]\n", 'A');
+	printf("printf len = %d\n", len);
+
+	len = _printf("_printf [h][%hc]\n", 'A');
+	printf("_printf len = %d\n", len);
+	len = printf("printf [h][%hc]\n", 'A');
+	printf("printf len = %d\n", len);
+
 	len = _printf("_printf [h][%hhd]\n", 100);
 	printf("_printf len = %d\n", len);
 	len = printf("printf [h][%hhd]\n", 100);
